@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:backgroundTint="@color/reg_white"
+    android:background="@color/reg_white"
+    >
+
+
+    <ScrollView
+        android:paddingHorizontal="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+    
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/creley_logo"
+            android:layout_gravity="center">
+            
+        </ImageView>
+            <TextView
+                android:fontFamily="@font/popi_bold"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Creley"
+                android:includeFontPadding="false"
+                android:textSize="30sp"
+                android:textColor="@color/mainColor"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenue !"
+                android:textColor="@color/reg_black"
+                android:fontFamily="@font/popi_med"
+                android:layout_gravity="center"
+                android:textSize="25sp"
+                android:layout_marginTop="30dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Se connecter : "
+                android:textColor="@color/reg_black"
+                android:fontFamily="@font/popi_reg"
+                android:layout_gravity="left"
+                android:textSize="21sp"
+                android:layout_marginTop="50dp">
+            </TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/emailContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/email_icon"
+                app:endIconTint="@color/gray"
+                android:hint="Email"
+                app:endIconMode="custom"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/emailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_marginTop="20dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/passContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mot de passe"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/gray"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:inputType="textPassword"
+                    android:id="@+id/passEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/changePassTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/changer_le_mot_de_passe"
+                android:fontFamily="@font/popi_reg"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:textColor="#625F5F"
+                >
+
+
+            </TextView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="80dp"
+                android:id="@+id/loginBtn"
+                android:background="@drawable/button_back"
+                android:textColor="#FFFFFF"
+                android:text="Se connecter"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/popi_med"
+                android:textSize="18sp"
+                android:includeFontPadding="false"
+                >
+            </androidx.appcompat.widget.AppCompatButton>
+
+
+            <LinearLayout
+                android:layout_marginTop="110dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    >
+                </View>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tu n'as pas de compte ?"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    >
+                </TextView>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    >
+                </View>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="10dp"
+                android:id="@+id/createAccBtn"
+                android:background="@drawable/transparent_back_btn"
+                android:textColor="@color/mainColor"
+                android:text="Créer un compte"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/popi_med"
+                android:textSize="18sp"
+                android:includeFontPadding="false"
+                >
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

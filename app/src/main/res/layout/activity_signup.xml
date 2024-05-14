@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity"
+    android:background="@color/reg_white"
+    android:backgroundTint="@color/reg_white"
+
+    >
+
+
+    <ScrollView
+        android:paddingHorizontal="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/creley_logo"
+                android:layout_gravity="center">
+
+            </ImageView>
+            <TextView
+                android:fontFamily="@font/popi_bold"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Creley"
+                android:includeFontPadding="false"
+                android:textSize="30sp"
+                android:textColor="@color/mainColor"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenue !"
+                android:textColor="@color/reg_black"
+                android:fontFamily="@font/popi_med"
+                android:layout_gravity="center"
+                android:textSize="25sp"
+                android:layout_marginTop="30dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Créer un compte"
+                android:textColor="@color/reg_black"
+                android:fontFamily="@font/popi_reg"
+                android:layout_gravity="left"
+                android:textSize="21sp"
+                android:layout_marginTop="50dp">
+            </TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/nomContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/person_icon"
+                app:endIconTint="@color/gray"
+                android:hint="Nom"
+                app:endIconMode="custom"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/nomEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/prenomContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/person_icon"
+                app:endIconTint="@color/gray"
+                android:hint="Prénom"
+                app:endIconMode="custom"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/prenomEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/phoneContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/phone_icon"
+                app:endIconTint="@color/gray"
+                android:hint="Numéro de téléphone"
+                app:endIconMode="custom"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="phone"
+                    android:id="@+id/phoneEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/emailContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/email_icon"
+                app:endIconTint="@color/gray"
+                android:hint="Email"
+                app:endIconMode="custom"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/emailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_marginTop="20dp"
+                app:cursorColor="@color/mainColor"
+                app:boxStrokeColor="@color/mainColor"
+                app:boxBackgroundColor="@color/reg_white"
+                android:textColorHint="@color/gray"
+                app:hintTextColor="@color/gray"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/passContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mot de passe"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/gray"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+
+                    android:inputType="textPassword"
+                    android:id="@+id/passEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/popi_reg"
+                    android:includeFontPadding="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- layout.xml -->
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_marginTop="5dp"
+                android:id="@+id/my_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="J'accepte toutes les conditions"
+                android:fontFamily="@font/popi_reg"
+                android:includeFontPadding="false"
+                android:textColor="@color/reg_black"
+                app:drawableTint="@color/white"
+                android:buttonTint="@color/mainColor"
+                android:backgroundTint="@color/mainColor"
+
+                />
+
+
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginTop="80dp"
+                android:id="@+id/signupBtn"
+                android:background="@drawable/button_back"
+                android:textColor="#FFFFFF"
+                android:text="Créer un compte"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/popi_med"
+                android:textSize="18sp"
+                android:includeFontPadding="false"
+                >
+            </androidx.appcompat.widget.AppCompatButton>
+            
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1.45"
+                    android:layout_height="wrap_content"
+                    android:text="Avez-vous un compte ?"
+                    android:fontFamily="@font/popi_reg"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textColor="#625F5F"
+                    android:gravity="end"
+                    >
+                </TextView>
+                <TextView
+                    android:id="@+id/signupTxt"
+                    android:gravity="start"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/se_connecter"
+                    android:fontFamily="@font/popi_reg"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/mainColor"
+                    android:layout_marginStart="4dp"
+                    >
+                </TextView>
+                    
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

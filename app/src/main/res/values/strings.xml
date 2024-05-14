@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Creley</string>
+    <string name="changer_le_mot_de_passe"><u>Changer le mot de passe</u></string>
+    <string name="se_connecter"><u>Se connecter</u></string>
+    <string name="request">Demandes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
