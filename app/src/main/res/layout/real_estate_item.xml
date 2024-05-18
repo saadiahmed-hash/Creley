@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/estate_back"
+    android:elevation="10dp"
+    android:layout_marginBottom="10dp"
+android:paddingTop="10dp"
+    >
+
+    <LinearLayout
+        android:elevation="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="6dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:background="@drawable/estate_img_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="-10dp"
+            app:cardCornerRadius="15dp"
+            >
+            <ImageView
+                android:id="@+id/houseImg"
+                android:background="@drawable/estate_img_back"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/house1"
+                android:scaleType="centerCrop"
+                >
+            </ImageView>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            >
+
+            <TextView
+                android:id="@+id/priceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="90000DZ"
+                android:textColor="@color/mainColor"
+                android:fontFamily="@font/popi_bold"
+                android:includeFontPadding="false"
+                android:textSize="23sp"
+                android:layout_marginLeft="20dp"
+                android:gravity="bottom"
+                android:layout_gravity="bottom"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/periodTypeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="/mois"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/popi_med"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/wilayaTxt"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sidi bel'abasse"
+            android:textSize="25sp"
+            android:fontFamily="@font/popi_bold"
+            android:includeFontPadding="false"
+            android:textColor="@color/reg_black"
+            android:layout_marginTop="10dp"
+            >
+        </TextView>
+        
+        <TextView
+            android:id="@+id/town"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tabia ,Sidi Ali Ben Youb "
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/gray"
+            android:textSize="19sp"
+            android:fontFamily="@font/popi_med"
+            android:includeFontPadding="false"
+            android:layout_marginTop="7dp"
+            >
+        </TextView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            android:backgroundTint="@color/gray"
+            android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp">
+        </View>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            >
+            <ImageView
+                app:tint="@color/mainColor"
+                android:layout_width="22dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/vectorbeds">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/bedsNbTxt"
+                android:gravity="center"
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:text="30 Lits"
+                android:fontFamily="@font/popi_reg"
+                android:textColor="#CA5F5D5D"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="8dp">
+
+            </TextView>
+
+
+            <ImageView
+                app:tint="@color/mainColor"
+                android:layout_width="22dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/vector">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/bathTxt"
+                android:layout_width="120dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="30 Salles de bain"
+                android:fontFamily="@font/popi_reg"
+                android:textColor="#CA5F5D5D"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                android:layout_marginStart="7dp">
+
+            </TextView>
+
+
+
+            <ImageView
+                app:tint="@color/mainColor"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/square_meters"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/surfaceTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="3000m²"
+                android:fontFamily="@font/popi_reg"
+                android:textColor="#CA5F5D5D"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
+                >
+
+            </TextView>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        app:tint="@color/mainColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="180dp"
+        android:elevation="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/text_back"
+
+
+        >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/typeTxt"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Apartement"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="185dp"
+        android:elevation="10dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/popi_med"
+        android:includeFontPadding="false"
+        android:textSize="14sp"
+        >
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

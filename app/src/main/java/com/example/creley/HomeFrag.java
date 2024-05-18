@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.creley.Adapters.estateAdapter;
+import com.example.creley.Classes.RealEstate;
 
 import java.util.ArrayList;
 
@@ -81,11 +82,11 @@ public class HomeFrag extends Fragment {
                 active(studioImg , studioTxt , view);
             }
         });
-        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , 30000 , "mois"));
-        estates.add(new RealEstate("1" , 2 , "Chalet" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , 30000 , "mois"));
-        estates.add(new RealEstate("1" , 2 , "Studio" , 1 , 100 , 1 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , 10000 , "mois"));
-        estates.add(new RealEstate("1" , 5 , "Villa" , 13 , 1000 , 5, 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , 90000 , "mois"));
-        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , 30000 , "mois"));
+        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" ,"aa" , 30000 , "mois"));
+        estates.add(new RealEstate("1" , 2 , "Chalet" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb"  ,"aa" , 30000 , "mois"));
+        estates.add(new RealEstate("1" , 2 , "Studio" , 1 , 100 , 1 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 10000 , "mois"));
+        estates.add(new RealEstate("1" , 5 , "Villa" , 13 , 1000 , 5, 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 90000 , "mois"));
+        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 30000 , "mois"));
 
         adapter = new estateAdapter(getContext() , estates);
         estateRecycler.setAdapter(adapter);

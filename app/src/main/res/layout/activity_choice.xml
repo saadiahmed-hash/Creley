@@ -55,6 +55,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/offrir"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="130dp"
@@ -77,6 +78,7 @@
 
             </TextView>
             <ImageView
+
                 android:backgroundTint="@color/black"
                 android:background="@color/black"
                 android:scaleType="centerCrop"

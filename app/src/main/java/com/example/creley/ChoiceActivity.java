@@ -12,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class ChoiceActivity extends AppCompatActivity {
-    CardView rechrech ;
+   protected CardView rechrech , offrir  ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +25,18 @@ public class ChoiceActivity extends AppCompatActivity {
             }
         });
 
+        offrir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChoiceActivity.this , Offrir_Home_Activity.class));
+            }
+        });
+
+
     }
 
     protected void init(){
         rechrech = findViewById(R.id.rechrech);
+        offrir = findViewById(R.id.offrir);
     }
 }

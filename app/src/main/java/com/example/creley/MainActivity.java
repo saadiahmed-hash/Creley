@@ -21,10 +21,9 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(3000);
-                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    startActivity(new Intent(MainActivity.this,Offrir_Home_Activity.class));
                     finish();
                 } catch (Exception e){
-
                 }
             }
         });
