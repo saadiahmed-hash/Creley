@@ -15,7 +15,7 @@ public class RealEstate {
     private float price ;
     private String authorID ;
 
-    public RealEstate(String id, int nbFloor, String type, int nbRoom, float surface, int nbBathroom, int furniture, String wilaya, String town , String township , float price, String periodType) {
+    public RealEstate(String id, int nbFloor, String type, int nbRoom, float surface, int nbBathroom, int furniture, String wilaya, String town , String township , float price, String periodType , String authorID) {
         this.id = id;
         this.nbFloor = nbFloor;
         this.type = type;
@@ -28,6 +28,7 @@ public class RealEstate {
         this.price = price;
         this.periodType = periodType;
         this.township = township ;
+        this.authorID = authorID ;
     }
 
     public String getId() {

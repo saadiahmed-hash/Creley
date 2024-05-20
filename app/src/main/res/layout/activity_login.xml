@@ -149,7 +149,7 @@
                 android:layout_marginTop="80dp"
                 android:id="@+id/loginBtn"
                 android:background="@drawable/button_back"
-                android:textColor="#FFFFFF"
+                android:textColor="#FFFFFFFF"
                 android:text="Se connecter"
                 android:textAllCaps="false"
                 android:layout_width="match_parent"
@@ -162,7 +162,7 @@
 
 
             <LinearLayout
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="90dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -208,6 +208,7 @@
                 android:fontFamily="@font/popi_med"
                 android:textSize="18sp"
                 android:includeFontPadding="false"
+                android:layout_marginBottom="100dp"
                 >
             </androidx.appcompat.widget.AppCompatButton>
 

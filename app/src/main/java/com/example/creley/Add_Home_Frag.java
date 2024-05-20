@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -16,8 +17,21 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.creley.Classes.RealEstate;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class Add_Home_Frag extends Fragment {
 
@@ -26,7 +40,8 @@ public class Add_Home_Frag extends Fragment {
 
     protected String[] dairaTable = {"Sidi Bel Abbès", "Aïn el Berd", "Ben Badis", "Marhoum", "Merine", "Mostefa Ben Brahim", "Moulay Slissen", "Ras El Ma", "Sfisef", "Sidi Ali Benyoub", "Sidi Ali Boussidi", "Sidi Lahcene", "Telagh", "Tenira", "Tessala"};
     protected String[][] baladiasTable = {{"Sidi Bel Abbès"}, {"Aïn el Berd", "Sidi Brahim", "Makedra", "Sidi Hamadouche"}, {"Ben Badis", "Badredine El Mokrani", "Hassi Zahana", "Chettouane Belaila"}, {"Marhoum", "Sidi Chaib", "Bir El Hammam"}, {"Merine", "Tafissour", "Oued Taourira", "Taoudmout"}, {"Mostefa Ben Brahim", "Tilmouni", "Zerouala", "Belarbi"}, {"Moulay Slissen", "El Haçaiba", "Aïn Tindamine"}, {"Ras El Ma", "Oued Sebaa", "Redjem Demouche"}, {"Sfisef", "M'Cid", "Aïn Adden", "Boudjebha El Bordj"}, {"Sidi Ali Benyoub", "Boukhanafis", "Tabia"}, {"Sidi Ali Boussidi", "Aïn Kada", "Lamtar", "Sidi Daho des Zairs"}, {"Sidi Lahcene", "Amarnas", "Sidi Khaled", "Sidi Yacoub"}, {"Telagh", "Mezaourou", "Dhaya", "Teghalimet"}, {"Tenira", "Oued Sefioun", "Benachiba Chelia", "Hassi Dahou"}, {"Tessala", "Aïn Thrid", "Sehala Thaoura"}};
-
+    protected Uri imgUri ;
+    protected Button addBtn ;
 
     protected String[] estateTypeTable = {"Appartement", "Bungalow", "Chalet", "Complexe touristique ", "Local", "Villa"};
 
@@ -34,7 +49,11 @@ public class Add_Home_Frag extends Fragment {
     protected ArrayAdapter<String> dairasAdapter, baladiyasAdapter, estateTypeAdapter , periodTypeAdapter;
     protected AutoCompleteTextView dairaList, estateTypeList, baladiaList , periodTypeList;
     protected String selectedDaira, selectedBaladia, selectedEstateType , selectedPeriodType;
-
+    protected TextInputEditText priceEdit , nbFloorEdit , nbRoomsEdit  , surfaceEdit , nbBathroomEdit ;
+    protected StorageReference mStorage;
+    protected FirebaseDatabase firebaseDatabase;
+    protected DatabaseReference estateRef;
+    protected  FirebaseAuth mAuth  ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -52,7 +71,6 @@ public class Add_Home_Frag extends Fragment {
                 updateBaladia(baladiasTable[i]);
             }
         });
-
         // setting baladia logic
         baladiaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,7 +83,6 @@ public class Add_Home_Frag extends Fragment {
                 }
             }
         });
-
         // setting estate type logic
         estateTypeAdapter = new ArrayAdapter<String>(getContext(), R.layout.drop_menu_item, estateTypeTable);
         estateTypeList.setAdapter(estateTypeAdapter);
@@ -77,7 +94,6 @@ public class Add_Home_Frag extends Fragment {
 
             }
         });
-
         //setting  period type logic
         periodTypeAdapter = new ArrayAdapter<String>(getContext(), R.layout.drop_menu_item, periodTypeTable);
         periodTypeList.setAdapter(periodTypeAdapter);
@@ -96,7 +112,14 @@ public class Add_Home_Frag extends Fragment {
             }
         });
 
-
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (imgUri!=null){
+                    uploadImage();
+                }
+            }
+        });
         return view;
 
     }
@@ -118,6 +141,20 @@ public class Add_Home_Frag extends Fragment {
         estateTypeList = v.findViewById(R.id.estateTypeList);
         periodTypeList = v.findViewById(R.id.periodTypeList);
         homeImg = v.findViewById(R.id.homeImg);
+        // new added
+
+        addBtn = v.findViewById(R.id.addBtn);
+        priceEdit = v.findViewById(R.id.priceEdit);
+        nbFloorEdit = v.findViewById(R.id.nbFloorEdit);
+        nbRoomsEdit = v.findViewById(R.id.nbRoomsEdit);
+        surfaceEdit = v.findViewById(R.id.surfaceEdit);
+        nbBathroomEdit = v.findViewById(R.id.nbBathroomEdit);
+
+        // DB declaration
+        mStorage = FirebaseStorage.getInstance().getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance("https://creley-c78b8-default-rtdb.europe-west1.firebasedatabase.app/") ;
+        estateRef = firebaseDatabase.getReference().child("RealEstate");
+        mAuth = FirebaseAuth.getInstance() ;
     }
 
     private void openImagePicker() {
@@ -128,10 +165,65 @@ public class Add_Home_Frag extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode == PICK_IMAGE_REQUEST) && (resultCode == RESULT_OK) && (data != null)) {
-            Uri selectedImageUri = data.getData();
-            homeImg.setImageURI(selectedImageUri);
-
-
+            imgUri = data.getData();
+            homeImg.setImageURI(imgUri  );
         }
     }
+
+
+
+    private void uploadImage() {
+        String id = estateRef.push().getKey();
+        StorageReference imageRef = mStorage.child("estateImages/").child(id);
+        imageRef.putFile(imgUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if (task.isSuccessful()) {
+                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            saveProdInDB(uri , id);
+                        }
+                    });
+                } else {
+                    Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+
+    private void saveProdInDB(Uri uri , String id) {
+        String prodID = id ;
+        assert prodID != null;
+        float i = (float) Integer.valueOf(surfaceEdit.getText().toString()) ;
+        float price = (float) Integer.valueOf(priceEdit.getText().toString()) ;
+
+        estateRef.child(mAuth.getCurrentUser().getUid().toString()).child(prodID).setValue(new RealEstate(prodID, Integer.valueOf(nbFloorEdit.getText().toString()),
+                                selectedEstateType,
+                                 Integer.valueOf(nbRoomsEdit.getText().toString()),
+                                 i,
+                                Integer.valueOf(nbBathroomEdit.getText().toString() ) ,
+                                0 ,
+                                "Sidi Bel Abbès",
+                            selectedDaira,
+                            selectedBaladia ,
+                            price  ,
+                            selectedPeriodType , mAuth.getCurrentUser().getUid().toString()))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Succ", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+
+
+
 }

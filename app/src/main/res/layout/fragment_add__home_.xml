@@ -31,6 +31,7 @@
                 android:gravity="center"
                 android:id="@+id/addTxt"
                 android:layout_width="250dp"
+                android:autoSizeTextType="uniform"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -252,7 +253,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
+                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/popi_reg"
                         android:includeFontPadding="false"
                         />
@@ -273,7 +274,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:endIconTint="@color/gray"
-                    android:hint="Nombre de chambres"
+                    android:hint="Chambres"
                     app:endIconMode="custom"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
@@ -282,9 +283,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:textColor="@color/black"
-                        android:textSize="12.9sp"
                         android:fontFamily="@font/popi_reg"
                         android:includeFontPadding="false"
+                        android:autoSizeTextType="uniform"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -320,7 +321,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
+                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/popi_reg"
                         android:includeFontPadding="false"
                         />
@@ -341,16 +342,16 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     app:endIconTint="@color/gray"
-                    android:hint="Nombre de salles de bains"
+                    android:hint="Salles de bains"
                     app:endIconMode="custom"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:inputType="number"
-                        android:id="@+id/nbBathroomEdit"
+                            android:id="@+id/nbBathroomEdit"
                         android:layout_width="match_parent"
                         android:layout_height="55dp"
                         android:textColor="@color/black"
-                        android:textSize="12.9sp"
+                        android:autoSizeTextType="uniform"
                         android:fontFamily="@font/popi_reg"
                         android:includeFontPadding="false"
                         />
@@ -361,7 +362,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_marginBottom="120dp"
                 android:layout_marginTop="80dp"
-                android:id="@+id/signupBtn"
+                android:id="@+id/addBtn"
                 android:background="@drawable/button_back"
                 android:textColor="#FFFFFF"
                 android:text="Ajouter un immobilier"

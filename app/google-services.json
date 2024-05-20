@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "188736728363",
+    "project_id": "creley-c78b8",
+    "storage_bucket": "creley-c78b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188736728363:android:24a186ccf3ac0c7f1e696e",
+        "android_client_info": {
+          "package_name": "com.example.creley"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMgJe2VHfIu_JQ7q_URw-S3DwiAXZJSBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

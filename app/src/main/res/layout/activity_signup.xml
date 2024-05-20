@@ -285,6 +285,7 @@
                     android:textSize="14sp"
                     android:textColor="@color/mainColor"
                     android:layout_marginStart="4dp"
+                    android:layout_marginBottom="50dp"
                     >
                 </TextView>
                     
