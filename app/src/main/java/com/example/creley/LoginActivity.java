@@ -32,9 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
-
-
-
         createAccBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

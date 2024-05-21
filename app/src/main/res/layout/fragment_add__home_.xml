@@ -6,6 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Add_Home_Frag"
     android:paddingHorizontal="20dp"
+
+    android:id="@+id/globalContainer"
+
     >
 
     <ScrollView

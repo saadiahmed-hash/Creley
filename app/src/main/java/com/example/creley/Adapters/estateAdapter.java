@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.creley.R;
 import com.example.creley.Classes.RealEstate;
 import com.example.creley.ViewHolders.estateViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class estateAdapter extends RecyclerView.Adapter<estateViewHolder> {
         holder.bathTxt.setText(String.valueOf(estate.getNbBathroom())+" Salles de bain");
         holder.bedsNbTxt.setText(String.valueOf(estate.getNbRoom())+" Lists");
         holder.surfaceTxt.setText(String.valueOf(estate.getSurface())+" m²");
+        Picasso.with(context).load(estate.getImgUri()).placeholder(context.getDrawable(R.drawable.creley_logo)).into(holder.houseImg);
     }
 
     @Override

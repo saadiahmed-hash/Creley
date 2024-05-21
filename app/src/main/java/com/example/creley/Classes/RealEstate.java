@@ -14,8 +14,20 @@ public class RealEstate {
     private int furniture ; // 0 --> no Furniture , 1 --> there is Furniture
     private float price ;
     private String authorID ;
+    private String imgUri ;
 
-    public RealEstate(String id, int nbFloor, String type, int nbRoom, float surface, int nbBathroom, int furniture, String wilaya, String town , String township , float price, String periodType , String authorID) {
+    public RealEstate() {
+    }
+
+    public String getImgUri() {
+        return imgUri;
+    }
+
+    public void setImgUri(String imgUri) {
+        this.imgUri = imgUri;
+    }
+
+    public RealEstate(String id, int nbFloor, String type, int nbRoom, float surface, int nbBathroom, int furniture, String wilaya, String town , String township , float price, String periodType , String authorID , String imgUri) {
         this.id = id;
         this.nbFloor = nbFloor;
         this.type = type;
@@ -29,6 +41,7 @@ public class RealEstate {
         this.periodType = periodType;
         this.township = township ;
         this.authorID = authorID ;
+        this.imgUri = imgUri ;
     }
 
     public String getId() {

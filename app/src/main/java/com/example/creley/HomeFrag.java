@@ -2,6 +2,7 @@ package com.example.creley;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,11 @@ import android.widget.TextView;
 
 import com.example.creley.Adapters.estateAdapter;
 import com.example.creley.Classes.RealEstate;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -28,11 +34,18 @@ public class HomeFrag extends Fragment {
    protected estateAdapter adapter ;
    protected ArrayList<RealEstate> estates ;
 
+    protected FirebaseDatabase firebaseDatabase;
+    protected DatabaseReference estateRef;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         init(view);
+        fetchData();
+
         allFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,15 +95,6 @@ public class HomeFrag extends Fragment {
                 active(studioImg , studioTxt , view);
             }
         });
-        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" ,"aa" , 30000 , "mois" , "a"));
-        estates.add(new RealEstate("1" , 2 , "Chalet" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb"  ,"aa" , 30000 , "mois", "a"));
-        estates.add(new RealEstate("1" , 2 , "Studio" , 1 , 100 , 1 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 10000 , "mois" , "a"));
-        estates.add(new RealEstate("1" , 5 , "Villa" , 13 , 1000 , 5, 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 90000 , "mois", "a"));
-        estates.add(new RealEstate("1" , 2 , "Appartement" , 4 , 234 , 2 , 0 , "Sidi bel'abasse" , "Tabia ,Sidi Ali Ben Youb" , "aa" , 30000 , "mois" , "a"));
-
-        adapter = new estateAdapter(getContext() , estates);
-        estateRecycler.setAdapter(adapter);
-        estateRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         return view ;
     }
     private void init(View view){
@@ -123,6 +127,10 @@ public class HomeFrag extends Fragment {
         villaTxt  = view.findViewById(R.id.villaTxt);
         studioTxt  = view.findViewById(R.id.studioTxt);
 
+
+        firebaseDatabase = FirebaseDatabase.getInstance("https://creley-c78b8-default-rtdb.europe-west1.firebasedatabase.app/") ;
+        estateRef = firebaseDatabase.getReference().child("RealEstate");
+
     }
     private void active(ImageView img , TextView txt , View v){
         allImg.setColorFilter(v.getContext().getColor(R.color.reg_black));
@@ -145,5 +153,27 @@ public class HomeFrag extends Fragment {
         studioTxt.setTextColor(v.getContext().getColor(R.color.reg_black));
         txt.setTextColor(v.getContext().getColor(R.color.mainColor));
 
+    }
+
+    private void fetchData(){
+        estateRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                estates.clear();
+                for (DataSnapshot oneSnap: snapshot.getChildren()) {
+                    for (DataSnapshot oneSubSnap:oneSnap.getChildren()) {
+                        estates.add(oneSubSnap.getValue(RealEstate.class));
+                    }
+                }
+                adapter = new estateAdapter(getContext() , estates);
+                estateRecycler.setAdapter(adapter);
+                estateRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

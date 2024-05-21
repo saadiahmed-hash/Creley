@@ -2,12 +2,14 @@ package com.example.creley;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -54,6 +56,8 @@ public class Add_Home_Frag extends Fragment {
     protected FirebaseDatabase firebaseDatabase;
     protected DatabaseReference estateRef;
     protected  FirebaseAuth mAuth  ;
+    protected ProgressDialog pd ;
+    protected ConstraintLayout  globalContainer ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -115,9 +119,24 @@ public class Add_Home_Frag extends Fragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (imgUri!=null){
-                    uploadImage();
+                if (checkFields()){
+                    if (imgUri!=null){
+                        globalContainer.setClickable(false);
+                        addBtn.setEnabled(false);
+                        addBtn.setClickable(false);
+                        addBtn.setText("S'il vous plaît, attendez...");
+                        pd.setMessage("S'il vous plaît, attendez");
+                        pd.setCancelable(false);
+                        pd.setCanceledOnTouchOutside(false);
+                        pd.show();
+                        uploadImage();
+                    } else {
+                        Toast.makeText(getContext(), "Veuillez sélectionner une image !", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Veuillez entrer toutes les informations !", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
         return view;
@@ -155,6 +174,11 @@ public class Add_Home_Frag extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance("https://creley-c78b8-default-rtdb.europe-west1.firebasedatabase.app/") ;
         estateRef = firebaseDatabase.getReference().child("RealEstate");
         mAuth = FirebaseAuth.getInstance() ;
+
+
+        // dialog init
+         pd = new ProgressDialog(getContext());
+        globalContainer = v.findViewById(R.id.globalContainer);
     }
 
     private void openImagePicker() {
@@ -169,9 +193,6 @@ public class Add_Home_Frag extends Fragment {
             homeImg.setImageURI(imgUri  );
         }
     }
-
-
-
     private void uploadImage() {
         String id = estateRef.push().getKey();
         StorageReference imageRef = mStorage.child("estateImages/").child(id);
@@ -186,10 +207,18 @@ public class Add_Home_Frag extends Fragment {
                         }
                     });
                 } else {
+                    addBtn.setEnabled(true);
+                    addBtn.setClickable(true);
+                    addBtn.setText("Ajouter un immobilier");
+                    pd.dismiss();
+                    clearEdits();
+                    globalContainer.setClickable(true);
                     Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
     }
 
 
@@ -209,21 +238,70 @@ public class Add_Home_Frag extends Fragment {
                             selectedDaira,
                             selectedBaladia ,
                             price  ,
-                            selectedPeriodType , mAuth.getCurrentUser().getUid().toString()))
+                            selectedPeriodType , mAuth.getCurrentUser().getUid().toString() ,
+                        uri.toString()))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Succ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), " Immobiliers ajoutés avec succès", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                        addBtn.setEnabled(true);
+                        addBtn.setClickable(true);
+                        addBtn.setText("Ajouter un immobilier");
+                        pd.dismiss();
+                        clearEdits();
+                        globalContainer.setClickable(true);
+
                     }
+
                 });
     }
 
 
 
+    private boolean checkFields(){
+        return checkEdit(priceEdit)
+                    &&  checkEdit(nbBathroomEdit)
+                    &&  checkEdit(nbRoomsEdit)
+                    && checkEdit(surfaceEdit)
+                    &&  checkEdit(nbBathroomEdit)
+                    &&  checkEdit(nbFloorEdit)
+                    && (selectedDaira!=null)
+                    && (selectedBaladia != null)
+                    && (selectedEstateType!=null)
+                    && (selectedPeriodType!=null) ; 
+    }
+
+
+    private boolean checkEdit(TextInputEditText edit ){
+        return  ! edit.getText().toString().equals("");
+    }
+
+    private void clearEdits(){
+        clearOneEdit(priceEdit) ;
+        clearOneEdit(nbBathroomEdit) ;
+        clearOneEdit(nbRoomsEdit) ;
+        clearOneEdit(surfaceEdit) ;
+        clearOneEdit(nbBathroomEdit) ;
+        dairaList.setText("");
+        baladiaList.setText("");
+        dairaList.setText("");
+        estateTypeList.setText("");
+        periodTypeList.setText("");
+        nbFloorEdit.setText("");
+        selectedPeriodType = null ;
+        selectedEstateType = null ;
+        selectedDaira = null ;
+        selectedBaladia = null ;
+    }
+
+    private void clearOneEdit(TextInputEditText edit){
+        edit.setText("");
+        edit.clearFocus();
+    }
 
 
 }
