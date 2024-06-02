@@ -36,6 +36,7 @@ public class HomeFrag extends Fragment {
 
     protected FirebaseDatabase firebaseDatabase;
     protected DatabaseReference estateRef;
+    protected  ArrayList <RealEstate> filtredList  ;
 
 
 
@@ -51,54 +52,65 @@ public class HomeFrag extends Fragment {
             public void onClick(View v) {
                 // call filter here
                 active(allImg , allTxt  , view);
+                filter("");
             }
         });
         apartmentFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 active(apartmentImg , apartmentTxt , view);
+                filter("Appartement");
             }
         });
         bungalowFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 active(bungalowImg , bungalowTxt , view);
+                filter("Bungalow");
+
             }
         });
         chaletFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 active(chaletImg , chaletTxt , view);
+                filter("Chalet");
             }
         });
         cTouriFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 active(cTouriImg , cTouriTxt , view);
+                        filter("Complexe touristique");
             }
         });
         localFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 active(localImg , localTxt , view);
+                filter("Local");
+
             }
         });
         villaFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 active(villaImg , villaTxt , view);
+                filter("Villa");
             }
         });
         studioFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 active(studioImg , studioTxt , view);
+                filter("Studio");
             }
         });
         return view ;
     }
     private void init(View view){
         estateRecycler = view.findViewById(R.id.estateRecycler);
+        estateRecycler.setHasFixedSize(true);
         estates = new ArrayList<>();
         allImg  = view.findViewById(R.id.allImg);
         apartmentImg  = view.findViewById(R.id.apartmentImg);
@@ -127,9 +139,11 @@ public class HomeFrag extends Fragment {
         villaTxt  = view.findViewById(R.id.villaTxt);
         studioTxt  = view.findViewById(R.id.studioTxt);
 
-
         firebaseDatabase = FirebaseDatabase.getInstance("https://creley-c78b8-default-rtdb.europe-west1.firebasedatabase.app/") ;
         estateRef = firebaseDatabase.getReference().child("RealEstate");
+
+
+        filtredList = new ArrayList<>();
 
     }
     private void active(ImageView img , TextView txt , View v){
@@ -169,11 +183,28 @@ public class HomeFrag extends Fragment {
                 estateRecycler.setAdapter(adapter);
                 estateRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
+    }
+
+
+    private  void filter(String s){
+        filtredList.clear();
+        if (s.equals("")){
+            adapter.setEstates(estates);
+        } else {
+            for (RealEstate oneEstate:
+                    estates) {
+                if (s.equals(oneEstate.getType())){
+                    filtredList.add(oneEstate) ;
+                }
+            }
+            adapter.setEstates(filtredList);
+        }
+
+
+
     }
 }

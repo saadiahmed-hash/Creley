@@ -45,7 +45,7 @@ public class Add_Home_Frag extends Fragment {
     protected Uri imgUri ;
     protected Button addBtn ;
 
-    protected String[] estateTypeTable = {"Appartement", "Bungalow", "Chalet", "Complexe touristique ", "Local", "Villa"};
+    protected String[] estateTypeTable = {"Appartement", "Bungalow", "Chalet", "Complexe touristique", "Local", "Villa" , "Studio"};
 
     protected String[] periodTypeTable = {"Par mois" , "Par jour" , "Par houre"} ;
     protected ArrayAdapter<String> dairasAdapter, baladiyasAdapter, estateTypeAdapter , periodTypeAdapter;
